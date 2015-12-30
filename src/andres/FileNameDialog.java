@@ -15,7 +15,7 @@ public class FileNameDialog extends DialogWrapper {
   protected FileNameDialog(@Nullable Project project) {
     super(project);
     init();
-    setTitle("Select the file name");
+    setTitle("Enter a name for the new file");
   }
 
   @Nullable
