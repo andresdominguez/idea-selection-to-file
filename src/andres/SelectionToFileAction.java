@@ -8,6 +8,7 @@ import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.project.Project;
+import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiFileFactory;
 
@@ -46,7 +47,10 @@ public class SelectionToFileAction extends AnAction {
       public void run() {
         PsiFile newFile = PsiFileFactory.getInstance(project)
             .createFileFromText(fileName, fileType, selectedText);
-        file.getContainingDirectory().add(newFile);
+
+        // Create file and navigate
+        PsiElement addedFile = file.getContainingDirectory().add(newFile);
+        addedFile.getContainingFile().navigate(true);
       }
     });
   }
