@@ -32,7 +32,13 @@ public class SelectionToFileAction extends AnAction {
       return;
     }
 
-    String fileName = "ando";
+    FileNameDialog dialog = new FileNameDialog(project);
+    dialog.show();
+    if (!dialog.isOK()) {
+      return;
+    }
+
+    String fileName = dialog.getFileName();
     FileType fileType = file.getFileType();
 
     ApplicationManager.getApplication().runWriteAction(new Runnable() {
